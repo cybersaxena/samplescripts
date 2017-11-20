@@ -3,12 +3,17 @@ oadm policy add-role-to-user admin manjunath.r@echidnainc.com
 oc adm policy add-cluster-role-to-user cluster-admin manjunath.r@echidnainc.com
 
 oc scale dc/tomcat-webapp --replicas=1 
+Autoscaler:
+oc autoscale dc/<deployment config> --min 2 --max 10 --cpu-percent=2
+
 oc projects
 oc project <name>
 oc new-project <name>
 
 oc new-app <dockerhubname/imagename>
 
+Create template:
+oc create -f <github template path>
 oc login -u system:admin (minishift cluster admin)
 
 Obtain Token:
@@ -20,6 +25,9 @@ oc new-project ci
 oc new-app library/jenkins:2.0
 oc expose svc jenkins
 
+oc create imagestream <dockerhubrepo/image:tag>
 bench-rest -n 800000 -c 25 http://tomcat-webapp-openshift-infra.192.168.99.100.nip.io/onlinebanking/
 
-minishift start --memory 8GB --cpus 4 --metrics true --vm-driver virtualbox
+minishift start --memory 8GB --cpus 4 --metrics true --vm-driver virtualbox --profile centos --iso-url centos
+
+eval $(minishift docker-env)
