@@ -1,5 +1,16 @@
 git clone -b branch <url>
 
-To update 
+To update enter into the project home directory and then 
 git pull
 
+To check in the code
+
+create a new repository on the command line:
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/ssaxena2017/mlbparks.git
+git push -u origin master
+
+push an existing repository from the command line
+git remote add origin https://github.com/ssaxena2017/mlbparks.git
+git push -u origin master
