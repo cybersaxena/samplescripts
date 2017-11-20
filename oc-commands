@@ -1,0 +1,14 @@
+oadm policy add-role-to-user cluster-admin manjunath.r@echidnainc.com 
+oadm policy add-role-to-user admin manjunath.r@echidnainc.com 
+oc adm policy add-cluster-role-to-user cluster-admin manjunath.r@echidnainc.com
+
+oc scale dc/tomcat-webapp --replicas=1 
+
+Jenkins 2.0 install
+oc new-project ci
+oc new-app library/jenkins:2.0
+oc expose svc jenkins
+
+bench-rest -n 800000 -c 25 http://tomcat-webapp-openshift-infra.192.168.99.100.nip.io/onlinebanking/
+
+minishift start --memory 8GB --cpus 4 --metrics true --vm-driver virtualbox
