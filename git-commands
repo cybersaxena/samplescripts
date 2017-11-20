@@ -1,0 +1,5 @@
+git clone -b branch <url>
+
+To update 
+git pull
+
